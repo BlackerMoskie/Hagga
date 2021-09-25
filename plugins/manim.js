@@ -16,7 +16,7 @@ const  Anim = "Get animation videos";
 
         var i = Math.floor(2*Math.random())
 
-        var respoimage = await axios.get(`${r_text[2]}`, { responseType: 'arraybuffer' })
+        var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
         await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.video, {mimetype: Mimetype.mp4, caption: Config.CP_TEXT})
 
@@ -31,7 +31,7 @@ MAMBA.addCommand({pattern: 'manim', fromMe: false, desc: Anim}, (async (message,
 
         var i = Math.floor(2*Math.random())
 
-        var respoimage = await axios.get(`${r_text[2]}`, { responseType: 'arraybuffer' })
+        var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
         await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.video, {mimetype: Mimetype.mp4, caption: Config.CP_TEXT})
 
