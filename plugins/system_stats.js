@@ -20,7 +20,7 @@ if (Config.ALIVE_IMG_TYPE == 'pp') {
         await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => { await message.client.sendMessage(message.jid, res.data, MessageType.image,{caption: Config.ALIVEMSG}); });
     }));
 
-    Raone.addCommand({pattern: 'sysd', fromMe: bm, desc: Lang.SYSD_DESC}, (async (message, match) => {
+   ASENA.addCommand({pattern: 'sysd', fromMe: bm, desc: Lang.SYSD_DESC}, (async (message, match) => {
 
         const child = spawnSync('neofetch', ['--stdout']).stdout.toString('utf-8')
         await message.sendMessage(
@@ -30,7 +30,7 @@ if (Config.ALIVE_IMG_TYPE == 'pp') {
 }
 else if (Config.ALIVE_IMG_TYPE == 'img') {
 
-   Raone.addCommand({pattern: 'alive', fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
+   ASENA.addCommand({pattern: 'alive', fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
 
     var image = await axios.get (Config.ALIVE_LOGO, {responseType: 'arraybuffer'})
        
