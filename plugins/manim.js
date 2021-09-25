@@ -1,22 +1,38 @@
-const Asena = require('../events');
+const Raone = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const axios = require('axios');
 const Config = require('../config');
 
 const Language = require('../language');
-const Lang = Language.getString('wallpaper');
+const  Anim = "Get animation videos";
 
 
-    Asena.addCommand({pattern: 'manim', fromMe: false, desc: Lang.WP}, (async (message, match) => {
+    MAMBA.addCommand({pattern: 'manim', fromMe: true, desc: Anim}, (async (message, match) => {
 
         var r_text = new Array ();
 
         r_text[0] = "https://dapuhy-api.herokuapp.com/api/anime/storyanime?apikey=SSSSSSS1D";
         r_text[1] = "https://dapuhy-api.herokuapp.com/api/anime/storyanime?apikey=SSSSSSS1D";
-                var i = Math.floor(2*Math.random())
 
-        var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
+        var i = Math.floor(2*Math.random())
 
-        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: Config.CAPTION_TXT})
+        var respoimage = await axios.get(`${r_text[2]}`, { responseType: 'arraybuffer' })
+
+        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.video, {mimetype: Mimetype.mp4, caption: Config.CP_TEXT})
+
+    }));
+
+MAMBA.addCommand({pattern: 'manim', fromMe: false, desc: Anim}, (async (message, match) => {
+
+        var r_text = new Array ();
+
+        r_text[0] = "https://dapuhy-api.herokuapp.com/api/anime/storyanime?apikey=UO0AST2FICHDgVP";
+        r_text[1] = "https://dapuhy-api.herokuapp.com/api/anime/storyanime?apikey=UO0AST2FICHDgVP";
+
+        var i = Math.floor(2*Math.random())
+
+        var respoimage = await axios.get(`${r_text[2]}`, { responseType: 'arraybuffer' })
+
+        await message.client.sendMessage(message.jid, Buffer(respoimage.data), MessageType.video, {mimetype: Mimetype.mp4, caption: Config.CP_TEXT})
 
     }));
