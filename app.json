@@ -20,7 +20,7 @@
             "ALIVE_IMG_TYPE": {
             "description": "ඔබ pp දැමුවහොත් .alive ගෑසූ විට ඔහුගේ profile චායාරූපය වැටේ ඔබ img දැමුවහොත් ඔබ කැමති චායාරූපයක් දැමිය හැක.",
             "required": true,
-            "value": "pp"
+            "value": "img"
         },
             "ALIVE_LOGO": {
             "description": ".alive ගෑසූ විට වැටිය යුතු චායාරූපය",
