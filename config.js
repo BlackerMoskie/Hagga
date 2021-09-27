@@ -22,6 +22,7 @@ module.exports = {
     VERSION: 'v1.2.3 Global Stable',
     CHANNEL: 'https://t.me/remasterplugin',
     SESSION: process.env.MAMBA_SESSION === undefined ? '' : process.env.MAMBA_SESSION,
+    ALIVE_CMD: process.env.ALIVE_CMD === undefined ? 'Made By BlackMamba🐍' : process.env.ALIVE_CMD,
     CAPTION_TXT: process.env.CAPTION_TXT === undefined ? 'Made By BlackMamba🐍' : process.env.CAPTION_TXT,
     ALIVE_IMG_TYPE: process.env.ALIVE_IMG_TYPE === undefined ? 'img' : process.env.ALIVE_IMG_TYPE,
     ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'https://telegra.ph/file/cc76f880d8583b8d2bfe0.jpg' : process.env.ALIVE_LOGO,
