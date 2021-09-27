@@ -13,7 +13,7 @@ let bm = Config.WORKTYPE == 'public' ? false : true
 
 if (Config.ALIVE_IMG_TYPE == 'pp') {
 
-    ASENA.addCommand({pattern: 'alive', fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
+    ASENA.addCommand({pattern: Config.ALIVE_CMD, fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
         
         let pp
         try { pp = await message.client.getProfilePicture(message.jid.includes('-') ? message.data.participant : message.jid ); } catch { pp = await message.client.getProfilePicture(); }
@@ -30,7 +30,7 @@ if (Config.ALIVE_IMG_TYPE == 'pp') {
 }
 else if (Config.ALIVE_IMG_TYPE == 'img') {
 
-   ASENA.addCommand({pattern: 'alive', fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
+   ASENA.addCommand({pattern: Config.ALIVE_CMD, fromMe: bm, desc: Lang.ALIVE_DESC}, (async (message, match) => {
 
     var image = await axios.get (Config.ALIVE_LOGO, {responseType: 'arraybuffer'})
        
