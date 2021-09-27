@@ -12,6 +12,11 @@
             "description": "ඔබ ඔබගෙ whatsappහි Sacn කෙරූ තැන ආපු Code eka දන්න",
             "required": true
         },
+            "ALIVE_CMD": {
+            "description": "ඔබ ඔබගෙ whatsappහි Sacn කෙරූ තැන ආපු Code eka දන්න",
+            "required": true,
+            "value": "alive"
+        },
             "CAPTION_TXT": {
             "description": "ඔබ යමක් බොට්ගෙන් ඉල්ලූ විට එය යටින් වැටෙන්න Caption Key එක",
             "required": true,
