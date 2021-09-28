@@ -26,10 +26,10 @@
             "DELETED": "*✅ Module successfully deleted!*"
         },
         "admin": {
-            "BAN_DESC": "කණ්ඩායමේ කෙනෙකු තහනම් කරන්න. පණිවිඩයට පිළිතුරු දෙන්න හෝ විධානය භාවිතා කිරීමට පුද්ගලයෙකු ටැග් කරන්න.",
-            "IM_NOT_ADMIN": "*මම මේ ගෲප් එකේ පරිපාලකයා නොවේ☹️*",
-            "BANNED": "ඔයානම් මාර සාපයක් මේ ගෲප් එකට🤬!",
-            "GIVE_ME_USER": "*මට පරිශීලකයෙක් දෙන්න😈!*",
+            "BAN_DESC": "Ban someone in the group. Reply to message or tag a person to use command.",
+            "IM_NOT_ADMIN": "*I am not admin in this group!*",
+            "BANNED": "kicked out of the group!",
+            "GIVE_ME_USER": "*Give me a user!😈!*",
             "ADD_DESC": "Adds someone to the group.",
             "ADDED": "added to the group!",
             "ALREADY_PROMOTED": "```Avan admin anu nenpa🙃```",
@@ -150,7 +150,7 @@
 
         "profile": {
             "KICKME_DESC": "It kicks you from the group you are using it in.",
-            "KICKME": "```ගිහින් එන්නම්! මම යනවා 🥰```",
+            "KICKME": "```Bye bye! I am going 🤠```",
             "PP_DESC": "Makes the profile photo what photo you reply.",
             "NEED_PHOTO": "*Give me a photo!*",
             "PPING": "```Setting profile photo...```",
