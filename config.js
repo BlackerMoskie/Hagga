@@ -26,8 +26,6 @@ module.exports = {
     CAPTION_TXT: process.env.CAPTION_TXT === undefined ? 'Made By BlackMamba🐍' : process.env.CAPTION_TXT,
     ALIVE_IMG_TYPE: process.env.ALIVE_IMG_TYPE === undefined ? 'img' : process.env.ALIVE_IMG_TYPE,
     ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'https://telegra.ph/file/cc76f880d8583b8d2bfe0.jpg' : process.env.ALIVE_LOGO,
-    SONG_DOWNLOAD: process.env.SONG_DOWNLOAD === undefined ? '༺⃟᤻᤻᤻᤻᤻᤻ٟٟٟٙٙٙٙٙٙٙ😏᭄᭄ؚؚؚؚٙٙٙٙٙٙٙ➪⃢DOWNLOADING ⃢SONG᭄᭄᭄࿐😍' : process.env.SONG_DOWNLOAD,
-    SONG_UPLOAD: process.env.SONG_UPLOAD === undefined ? '༺⃟᤻᤻᤻᤻᤻᤻ٟٟٟٙٙٙٙٙٙٙ😏᭄᭄ؚؚؚؚٙٙٙٙٙٙٙ➪⃢UPLOADING ⃢SONG᭄᭄᭄࿐😍' : process.env.SONG_UPLOAD,
     GANSTYLE: process.env.GAN_IMAGE === undefined ? 'https://i.hizliresim.com/loUtAb.jpg' : process.env.GAN_IMAGE,
     LANG: process.env.LANGUAGE === undefined ? 'TR' : process.env.LANGUAGE.toUpperCase(),
     ALIVEMSG: process.env.ALIVE_MESSAGE === undefined ? 'default' : process.env.ALIVE_MESSAGE,
