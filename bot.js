@@ -234,7 +234,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                 }
                 else {
 
-                await conn.sendMessage(conn.user.jid, '*💕Maraya private ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot private ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.Updates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n*\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                await conn.sendMessage(conn.user.jid, fs.readFileSync("https://telegra.ph/file/ab4ea320d7979c2ce1734.gif"), MessageType.gif, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
             }
             else {
@@ -257,7 +257,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                 }
                 else {
 
-                    await conn.sendMessage(conn.user.jid, '*💕Maraya private ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot private ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.*\n\nUpdates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                    await conn.sendMessage(conn.user.jid, fs.readFileSync("https://telegra.ph/file/ab4ea320d7979c2ce1734.gif"), MessageType.gif, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
             }
         }
