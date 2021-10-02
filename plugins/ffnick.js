@@ -10,9 +10,6 @@ Asena.addCommand({pattern: 'playstore ?(.*)', fromMe: false, desc: Lang.HMODD_DE
 	if (match[1] === '') return await message.reply(Lang.NEED_APPNAME);
 	const url = `https://dapuhy-api.herokuapp.com/api/search/playstore?query=${match[1]}&apikey=SSSSSSS1D`;
 	try {
-		const response = await got(url);
-		if (response.statusCode === 200) return await message.client.sendMessage(message.jid, 
-		'*🐱‍👤 ' + Lang.NAMEY +'* ```' + json.result[0].icon + '```\n\n' + , MessageType.image);
 		const json = JSON.parse(response.body);
 		if (response.statusCode === 200) return await message.client.sendMessage(message.jid, 
 		'*🐱‍👤 ' + Lang.NAMEY +'* ```' + json.result[0].title + '```\n\n' + 
