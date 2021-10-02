@@ -186,7 +186,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                     })
                 }
                 else {
-                    await conn.sendMessage(conn.user.jid, fs.readFileSync("./upload/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
+                    await conn.sendMessage(conn.user.jid, fs.readFileSync("./uploads/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
             }
             else {
@@ -208,7 +208,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                     })
                 }
                 else {
-                    await conn.sendMessage(conn.user.jid, fs.readFileSync("./upload/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
+                    await conn.sendMessage(conn.user.jid, fs.readFileSync("./uploads/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
 
             }
@@ -234,7 +234,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                 }
                 else {
 
-                await conn.sendMessage(conn.user.jid, fs.readFileSync("./upload/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
+                await conn.sendMessage(conn.user.jid, fs.readFileSync("./uploads/download.jpg"), MessageType.image, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
             }
             else {
@@ -257,7 +257,7 @@ ${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙම�
                 }
                 else {
 
-                    await conn.sendMessage(conn.user.jid, fs.readFileSync("https://telegra.ph/file/ab4ea320d7979c2ce1734.gif"), MessageType.gif, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
+                    await conn.sendMessage(conn.user.jid, fs.readFileSync("./uploads/download.jpg"), MessageType.gif, { caption: `Black Mamba Bot Now working! 😍\n\n👋 Hay ${conn.user.name} welcome to Black Mamba 🐍\n\n🐍 _Please do not try plugins here. This is your login number. You can try the command in any chat :)_\n\n*😍 Thank You For Using Black Mamba 🐍`});
                 }
             }
         }
