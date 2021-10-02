@@ -1,17 +1,27 @@
+/* Maraya Copyright 💕 */
+
 const fs = require("fs");
 const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
+const axios = require('axios');
 const config = require('./config');
-const {WAConnection, MessageType, Presence} = require('@adiwajshing/baileys');
+const Heroku = require('heroku-client');
+const {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
 const {Message, StringSession, Image, Video} = require('./whatsasena/');
 const { DataTypes } = require('sequelize');
-const { getMessage } = require("./plugins/sql/greetings");
-const axios = require('axios');
+const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
 const got = require('got');
 
+const heroku = new Heroku({
+    token: config.HEROKU.API_KEY
+});
+
+let baseURI = '/apps/' + config.HEROKU.APP_NAME;
+
+
 // Sql
-const WhatsAsenaDB = config.DATABASE.define('WhatsAsena', {
+const WhatsAsenaDB = config.DATABASE.define('WhatsAsenaDuplicated', {
     info: {
       type: DataTypes.STRING,
       allowNull: false
@@ -35,8 +45,9 @@ String.prototype.format = function () {
     var i = 0, args = arguments;
     return this.replace(/{}/g, function () {
       return typeof args[i] != 'undefined' ? args[i++] : '';
-   });
+    });
 };
+
 if (!Date.now) {
     Date.now = function() { return new Date().getTime(); }
 }
@@ -60,10 +71,26 @@ async function whatsAsena () {
         }
     });
     
-    
     const conn = new WAConnection();
-    conn.version = [2, 2126, 14];
     const Session = new StringSession();
+    conn.version = [2,2123,8]
+    setInterval(async () => { 
+        var getGMTh = new Date().getHours()
+        var getGMTm = new Date().getMinutes()
+        await axios.get('https://gist.githubusercontent.com/BlackAmda/c3877acdcdc041d77907d590d4ac1a2d/raw/').then(async (ann) => {
+            const { infoen, infosi} = ann.data.announcements          
+            if (infoen !== '' && config.LANG == 'EN') {
+                while (getGMTh == 21 && getGMTm == 31) { 
+                    return conn.sendMessage(conn.user.jid, '[ ```🔔💕Maraya Announcements🔔``` ]\n\n' + infoen.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text) 
+                }
+            }
+            else if (infosi !== '' && config.LANG == 'EN') {
+                while (getGMTh == 21 && getGMTm == 31) { 
+                    return conn.sendMessage(conn.user.jid, '[ ```🔔💕Maraya නිවේදන🔔``` ]\n\n' + infosi.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text) 
+                }
+            }
+        })
+    }, 50000);
 
     conn.logger.level = config.DEBUG ? 'debug' : 'warn';
     var nodb;
@@ -77,7 +104,7 @@ async function whatsAsena () {
 
     conn.on ('credentials-updated', async () => {
         console.log(
-            chalk.blueBright.italic('✅ Login information updated!')
+            chalk.blueBright.italic('✅ පිවිසුම් තොරතුරු update කරන ලදි!')
         );
 
         const authInfo = conn.base64EncodedAuthInfo();
@@ -91,17 +118,18 @@ async function whatsAsena () {
     conn.on('connecting', async () => {
         console.log(`${chalk.green.bold('Whats')}${chalk.blue.bold('Asena')}
 ${chalk.white.bold('Version:')} ${chalk.red.bold(config.VERSION)}
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
+
+${chalk.blue.italic('ℹ️ WhatsApp වෙත සම්බන්ධ වෙමින් පවතී... කරුණාකර රැඳී සිටින්න.')}`);
     });
     
 
     conn.on('open', async () => {
         console.log(
-            chalk.green.bold('✅ Login successful!')
+            chalk.green.bold('✅ පුරනය වීම සාර්ථකයි!')
         );
 
         console.log(
-            chalk.blueBright.italic('⬇️ Installing external plugins...')
+            chalk.blueBright.italic('⬇️ බාහිර plugins ස්ථාපනය කිරීම...')
         );
 
         var plugins = await plugindb.PluginDB.findAll();
@@ -117,7 +145,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         });
 
         console.log(
-            chalk.blueBright.italic('🌈  Installing plugins...')
+            chalk.blueBright.italic('⬇️  Plugins ස්ථාපනය කිරීම...')
         );
 
         fs.readdirSync('./plugins').forEach(plugin => {
@@ -127,14 +155,113 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         });
 
         console.log(
-            chalk.green.bold('Julie Mwol working! 😍')
+            chalk.green.bold('✅ Plugins ස්ථාපනය කර ඇත! Bot දැන් ඔබට භාවිතා කළ හැකිය.')
         );
+        await new Promise(r => setTimeout(r, 1100));
+
+        if (config.WORKTYPE == 'public') {
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
+
+                if (conn.user.jid === '@s.whatsapp.net') {
+
+                    await conn.sendMessage(conn.user.jid, '```🛡️ Blacklist අනාවරණය විය!``` \n```පරිශීලක:``` \n```හේතුව:``` ', MessageType.text)
+
+                    await new Promise(r => setTimeout(r, 1700));
+
+                    console.log('🛡️ Blacklist Detected 🛡️')
+
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
+                }
+                else {
+                    await conn.sendMessage(conn.user.jid, '*💕Maraya public ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot public ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:private_ *විධානය භාවිතා කරන්න.*\n\n*Updates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                }
+            }
+            else {
+
+                if (conn.user.jid === '@s.whatsapp.net') {
+
+                    await conn.sendMessage(conn.user.jid, '```🛡️ Blacklist Detected!``` \n```User:```  \n```Reason:``` ', MessageType.text)
+
+                    await new Promise(r => setTimeout(r, 1800));
+
+                    console.log('🛡️ Blacklist Detected 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
+                }
+                else {
+                    await conn.sendMessage(conn.user.jid, '*😎💕Maraya public ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot public ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:private_ *විධානය භාවිතා කරන්න.*\n\n*Updates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                }
+
+            }
+        }
+        else if (config.WORKTYPE == 'private') {
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
+
+                if (conn.user.jid === '@s.whatsapp.net') {
+
+                    await conn.sendMessage(conn.user.jid, '```🛡️ Blacklist Detected!``` \n ```පරිශීලක:``` \n```හේතුව:``` ', MessageType.text)
+
+                    await new Promise(r => setTimeout(r, 1800));
+
+                    console.log('🛡️ Blacklist Detected 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
+                }
+                else {
+
+                await conn.sendMessage(conn.user.jid, '*💕Maraya private ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot private ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.Updates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n*\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                }
+            }
+            else {
+
+                if (conn.user.jid === '@s.whatsapp.net') {
+
+                    await conn.sendMessage(conn.user.jid, '```🛡️ Blacklist Detected!``` \n```User:```  \n```Reason:``` ', MessageType.text)
+   
+                    await new Promise(r => setTimeout(r, 1800));
+
+                    console.log('🛡️ Blacklist Detected 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
+                }
+                else {
+
+                    await conn.sendMessage(conn.user.jid, '*💕Maraya private ආකාරයට ක්‍රියාකිරිම ආරම්භ විය.*\n\n_කරුණාකර මෙහි command උත්සාහ නොකරන්න. මෙය ඔබගේ ලොග් අංකයයි._\n_ඔබට ඕනෑම චැට් එකක විධාන උත්සාහ කළ හැකිය :)_\n\n*ඔබේ command list එක ලබාගැනීමට .panel command එක භාවිතා කරන්න.*\n\n*ඔබේ bot private ක්‍රියාත්මක වේ. වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.*\n\nUpdates:* https://gist.github.com/SLBADBOY/abb0e8699cdc35ac45914694de120fe6\n\n *💕Maraya භාවිතා කිරීම ගැන ස්තූතියි 💌*', MessageType.text);
+                }
+            }
+        }
+        else {
+            return console.log('Wrong WORK_TYPE key! Please use “private” or “public”')
+        }
     });
+
     
-    conn.on('chat-update', async m => {
-        if (!m.hasNewMessage) return;
-        if (!m.messages && !m.count) return;
-        let msg = m.messages.all()[0];
+    conn.on('message-new', async msg => {
         if (msg.key && msg.key.remoteJid == 'status@broadcast') return;
 
         if (config.NO_ONLINE) {
@@ -142,23 +269,21 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         }
 
         if (msg.messageStubType === 32 || msg.messageStubType === 28) {
-            // Görüşürüz Mesajı
-            var gb = await getMessage(msg.key.remoteJid, 'goodbye');
+            // see you message
+            var blogo = await axios.get(config.BYE_LOGO, {responseType: 'arraybuffer'})
+            var gb = await getMessage(msg.key.remoteJid, 'goodbye')
+            
             if (gb !== false) {
-                let pp
-                try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
-                await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
-                await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message }); });
+                await conn.sendMessage(msg.key.remoteJid, Buffer.from (blogo.data), MessageType.video, {mimetype: Mimetype.gif, caption: gb.message});
             }
             return;
         } else if (msg.messageStubType === 27 || msg.messageStubType === 31) {
-            // Hoşgeldin Mesajı
-            var gb = await getMessage(msg.key.remoteJid);
+            // Welcome message
+            var wlogo = await axios.get(config.WELCOME_LOGO, {responseType: 'arraybuffer'})
+            var gb = await getMessage(msg.key.remoteJid)
+            
             if (gb !== false) {
-               let pp
-                try { pp = await conn.getProfilePicture(msg.messageStubParameters[0]); } catch { pp = await conn.getProfilePicture(); }
-                await axios.get(pp, {responseType: 'arraybuffer'}).then(async (res) => {
-                await conn.sendMessage(msg.key.remoteJid, res.data, MessageType.image, {caption:  gb.message }); });
+                await conn.sendMessage(msg.key.remoteJid, Buffer.from (wlogo.data), MessageType.video, {mimetype: Mimetype.gif, caption: gb.message});
             }
             return;
         }
@@ -197,20 +322,12 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-                    
-                    else if ((config.YAK !== false && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && config.YAK.includes(',') ? config.YAK.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.YAK || config.YAK.includes(',') ? config.YAK.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.YAK)
-                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
-                        if (command.onlyPinned && chat.pin === undefined) return;
-                        if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
-                        else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
-                    }
-  
+    
                     if (sendMsg) {
                         if (config.SEND_READ && command.on === undefined) {
                             await conn.chatRead(msg.key.remoteJid);
                         }
-                       
+                        
                         var match = text_msg.match(command.pattern);
                         
                         if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
@@ -222,25 +339,37 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                         } else {
                             whats = new Message(conn, msg);
                         }
-/*
-                        if (command.deleteCommand && msg.key.fromMe) {
-                            await whats.delete(); 
-                        }
-*/
+                        if (msg.key.fromMe) {
+                            var vers = conn.user.phone.wa_version.split('.')[2]
+                            try {
+                                if (command.deleteCommand && vers < 12) { 
+                                    await whats.delete() 
+                                 }
+                                 else { 
+                                     await command.function(whats, match);
+                                 }
+                             } catch (err) { await command.function(whats, match) } }
+
                         try {
                             await command.function(whats, match);
                         } catch (error) {
                             if (config.LANG == 'TR' || config.LANG == 'AZ') {
-                                await conn.sendMessage(conn.user.jid, '-- HATA RAPORU [WHATSASENA] --' + 
-                                    '\n*WhatsAsena bir hata gerçekleşti!*'+
-                                    '\n_Bu hata logunda numaranız veya karşı bir tarafın numarası olabilir. Lütfen buna dikkat edin!_' +
-                                    '\n_Yardım için Telegram grubumuza yazabilirsiniz._' +
-                                    '\n_Bu mesaj sizin numaranıza (kaydedilen mesajlar) gitmiş olmalıdır._\n\n' +
-                                    'Gerçekleşen Hata: ' + error + '\n\n'
-                                    , MessageType.text);
+                                await conn.sendMessage(conn.user.jid, '*-- දෝෂ වාර්තාව [💕Maraya] --*\n\n' + 
+                                    '\n*Bot දෝෂයක් සිදුවී ඇත!\n*'+
+                                    '\n_මෙම දෝෂ logs ඔබගේ අංකය හෝ ප්‍රති පාර්ශ්වයේ අංකය අඩංගු විය හැකිය. කරුණාකර එය සමග සැලකිලිමත් වන්න!_\n' +
+                                    '\n_උදව් සඳහා ඔබට අපගේ whatsapp support කණ්ඩායමට ලිවිය හැකිය._\n' +
+                                    '\n_මෙම පණිවිඩය ඔබගේ අංකයට ගොස් තිබිය යුතුය (සුරකින ලද පණිවිඩ)_\n\n' +
+                                    '\n_https://chat.whatsapp.com/EVBPN1G1Pv58X6AeSFz2LN ඔබට එය මෙම group යොමු කළ හැකිය._\n\n' +
+                                    '*සිදු වූ දෝෂය:* ```' + error + '```\n\n'
+                                    , MessageType.text, {detectLinks: false});
                             } else {
-                                await conn.sendMessage(conn.user.jid, '*~♥️🕊️______~ Black Mamba ~_____🕊️♥️~*' +
-                                    '\n\n*🧞‍♂️ ' + error + '*\n'
+                                await conn.sendMessage(conn.user.jid, '*-- බොට් වාර්තාව [💕Maraya] --*\n' + 
+                                    '\n*බොට් නිසි ලෙස ක්රියා කරයි.*\n'+
+                                    '\n_Message logs ඔබගේ අංකය හෝ ප්‍රති පාර්ශ්වයේ අංකය අඩංගු විය හැකිය. කරුණාකර එය සමග සැලකිලිමත් වන්න!_\n' +
+                                    '\n_උදව් සඳහා ඔබට අපගේ whatsapp support කණ්ඩායමට ලිවිය හැකිය._\n' +
+                                    '\n_(සුරකින ලද පණිවිඩ)_\n\n' +
+                                    '\n_ඔබේ bot සඳහා යම් උදව්වක් අවශ්‍ය නම්, https://chat.whatsapp.com/EVBPN1G1Pv58X6AeSFz2LN_\n\n' +
+                                    '*Report:* ```' + error + '```\n\n'
                                     , MessageType.text);
                             }
                         }
@@ -254,7 +383,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
         await conn.connect();
     } catch {
         if (!nodb) {
-            console.log(chalk.red.bold('Eski sürüm stringiniz yenileniyor...'))
+            console.log(chalk.red.bold('Refreshing your old version string...'))
             conn.loadAuthInfo(Session.deCrypt(config.SESSION)); 
             try {
                 await conn.connect();
