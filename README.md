@@ -1,5 +1,13 @@
 ### agentmax12345
 
+<p align="center">
+    <a href="https://github.com/Agentrox8520">
+        <img
+            src="https://readme-typing-svg.herokuapp.com?size=33&width=1000&lines=Welcome+To+BlackMamba...+Thank+You+For+Visiting...."
+            alt="Typing SVG"
+        />
+    </a>
+
 ### ⚠️ Warning! 
 ```
 Due to Userbot; Your WhatsApp account may be banned.
