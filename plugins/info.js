@@ -21,7 +21,6 @@ MAMBA.addCommand({pattern: 'info', fromMe: false, desc: 'Shows bot information a
 
     await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: `` + ` BlackMamba ` + ` *BOT CREATED BY* ` + `SL-MOSKIE ` +`
     
-      ----- ` + B   M  + ` -----
     
 ╭─➤ 𝗜𝗡𝗙𝗢 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥 »
 │❖ *ᴀᴜᴛʜᴏʀ* : ` + `Navidu` + `
