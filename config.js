@@ -30,7 +30,7 @@ module.exports = {
     PLOGOSK: process.env.PALL_IMG === undefined ? 'https://telegra.ph/file/fa733653c48f516e22cdd.jpg' : process.env.PALL_IMG,
     PSLINK: process.env.PSOCIAL_MEDIA === undefined ? 'ᴄᴏᴍɪɴɢ ꜱᴏᴏɴ...' : process.env.PSOCIAL_MEDIA,
     PAFN: process.env.PALL_CAPTION === undefined ? 'Made By Back Mamba' : process.env.PALL_CAPTION,
-    PPLK: process.env.POWNER_NAME === undefined ? 'default' : process.env.POWNER_NAME,
+    PPLK: process.env.POWNER_NAME === undefined ? 'BLACK MAMBA-TEAM' : process.env.POWNER_NAME,
     GANSTYLE: process.env.GAN_IMAGE === undefined ? 'https://i.hizliresim.com/loUtAb.jpg' : process.env.GAN_IMAGE,
     LANG: process.env.LANGUAGE === undefined ? 'TR' : process.env.LANGUAGE.toUpperCase(),
     ALIVEMSG: process.env.ALIVE_MESSAGE === undefined ? 'default' : process.env.ALIVE_MESSAGE,
