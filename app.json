@@ -17,7 +17,7 @@
             "required": true,
             "value": "alive"
         },
-            "CAPTION_TXT": {
+            "AFN": {
             "description": "ඔබ යමක් බොට්ගෙන් ඉල්ලූ විට එය යටින් වැටෙන Caption Key එක වෙනස් කිරීම",
             "required": true,
             "value": "Made By BlackMamba🐍"
