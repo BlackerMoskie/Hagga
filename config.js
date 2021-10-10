@@ -27,6 +27,8 @@ module.exports = {
     ALIVE_IMG_TYPE: process.env.ALIVE_IMG_TYPE === undefined ? 'img' : process.env.ALIVE_IMG_TYPE,
     ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'https://telegra.ph/file/cc76f880d8583b8d2bfe0.jpg' : process.env.ALIVE_LOGO,
     AFN: process.env.ALL_CAPTION === undefined ? 'Made By Back Mamba' : process.env.ALL_CAPTION,
+    SONG_DOWNLOAD: process.env.SONG_DOWNLOAD === undefined ? '꧁•٭𝚙𝚕𝚣 𝚠𝚊𝚒𝚝𝚎 𝚛𝚊𝚟𝚊𝚗𝚊 𝚋𝚘𝚝 𝚞𝚙𝚕𝚘𝚊𝚍𝚒𝚗𝚐 𝚢𝚘𝚞𝚛 𝚜𝚘𝚗𝚐 𝚚𝚞𝚒𝚌𝚔𝚕𝚢٭•꧂' : process.env.SONG_DOWNLOAD,
+    SONG_UPLOAD: process.env.SONG_UPLOAD === undefined ? '꧁•٭𝚙𝚕𝚣 𝚠𝚊𝚒𝚝𝚎 𝚛𝚊𝚟𝚊𝚗𝚊 𝚋𝚘𝚝 𝚞𝚙𝚕𝚘𝚊𝚍𝚒𝚗𝚐 𝚢𝚘𝚞𝚛 𝚜𝚘𝚗𝚐 𝚚𝚞𝚒𝚌𝚔𝚕𝚢٭•꧂' : process.env.SONG_UPLOAD,
     GANSTYLE: process.env.GAN_IMAGE === undefined ? 'https://i.hizliresim.com/loUtAb.jpg' : process.env.GAN_IMAGE,
     LANG: process.env.LANGUAGE === undefined ? 'TR' : process.env.LANGUAGE.toUpperCase(),
     ALIVEMSG: process.env.ALIVE_MESSAGE === undefined ? 'default' : process.env.ALIVE_MESSAGE,
