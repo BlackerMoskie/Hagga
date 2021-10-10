@@ -35,12 +35,12 @@
             "SOND_DOWNLOAD": {
             "description": "සින්දු DOWNLOADING වන විට වැටිය යුතු පදය",
             "required": true,
-            "value": "༺⃟᤻᤻᤻᤻᤻᤻ٟٟٟٙٙٙٙٙٙٙ😏᭄᭄ؚؚؚؚٙٙٙٙٙٙٙ➪⃢DOWNLOADING ⃢SONG᭄᭄᭄࿐😍"
+            "value": "✅DOWNLOADING SONG࿐😍"
         },
             "SONG_UPLOAD": {
             "description": "සින්දු UPLOADING වන විට වැටිය යුතු පදය",
             "required": true,
-            "value": "༺⃟᤻᤻᤻᤻᤻᤻ٟٟٟٙٙٙٙٙٙٙ😏᭄᭄ؚؚؚؚٙٙٙٙٙٙٙ➪⃢UPLOADING ⃢SONG᭄᭄᭄࿐😍"
+            "value": "😏UPLOADING SONG࿐😍"
         },
         "SUDO": {
             "description": "ඔබේ Botවෙත තවත් පරිපාලකයෙකු ලබාදීම සදහා. කරුණාකර ඔබේ රටේ කේතය ඇතුලත්ව whatsapp දුරකථන අංකය යොදන්න, උදා:- 947xxxxxxxx!",
