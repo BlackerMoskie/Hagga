@@ -1,0 +1,5 @@
+build:
+  docker:
+      worker: /media/gif/Dockerfile
+run:
+   worker: npm start
